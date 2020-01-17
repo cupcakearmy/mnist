@@ -1,0 +1,61 @@
+<html>
+
+<head>
+    <style>
+        * {
+            box-sizing: border-box;
+            font-family: monospace;
+        }
+
+        html,
+        body {
+            padding: 0;
+            margin: 0;
+            height: 100vh;
+            width: 100vw;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        body>div {
+            text-align: center;
+        }
+
+        div canvas {
+            display: inline-block;
+            border: 1px solid;
+        }
+
+        div input {
+            display: inline-block;
+            margin-top: .5em;
+            padding: .5em 2em;
+            background: white;
+            outline: none;
+            border: 1px solid;
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+    <div>
+        <h1>MNIST (Pretrained)</h1>
+        <canvas id="can" width="28" height="28"></canvas>
+        <br />
+        <input id="clear" type="button" value="clear">
+        <br />
+        <input id="test" type="button" value="test">
+        <br />
+        <h2 id="result"></h2>
+        <a href="https://github.com/cupcakearmy/mnist">
+            <h3>source code</h3>
+        </a>
+    </div>
+
+    <script src="./tf.js"></script>
+    <script src="./canvas.js"></script>
+</body>
+
+</html>
