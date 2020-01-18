@@ -1,0 +1,30 @@
+kind: pipeline
+name: default
+
+steps:
+  - name: build
+    image: node:alpine
+    pull: always
+    commands:
+      - node -v
+      - yarn
+      - yarn run build
+
+  - name: deploy
+    image: cupcakearmy/drone-deploy
+    pull: always
+    settings:
+      host: nicco.io
+      user: root
+      key:
+        from_secret: ssh_key
+      port: 1312
+      target: /srv/web/mnist
+      sources:
+        - ./dist
+        - ./docker-compose.prod.yml
+      commands:
+        - docker-compose -f docker-compose.prod.yml up -d
+    when:
+      event: push
+      branch: master

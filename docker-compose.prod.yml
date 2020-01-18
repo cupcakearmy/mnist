@@ -1,0 +1,19 @@
+version: '3.7'
+
+networks:
+  traefik:
+    external: yes
+
+services:
+  server:
+    image: cupcakearmy/static
+    restart: unless-stopped
+    volumes:
+      - ./dist:/srv:ro
+    networks:
+      - traefik
+    labels:
+      - traefik.enable=true
+      - traefik.port=80
+      - traefik.backend=mnist
+      - traefik.frontend.rule=Host:mnist.nicco.io
